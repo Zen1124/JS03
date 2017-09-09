@@ -8,11 +8,15 @@
     crossorigin="anonymous">
     </script>
     <style>
-    table {
+    #input {
+      height: 25px;
       width: 300px;
-      height: 50px;
     }
-    tr, td {
+    table {
+      width: 600px;
+      height:600px;
+    }
+    tr, td, th {
       border: solid;
       border-color: black;
       width: 200px;
@@ -20,29 +24,53 @@
     }
     #go {
       height: 50px;
-      color: red;
+      background-color: red;
     }
     </style>
   </head>
   <body>
     <input id='input' type="number" placeholder="Input table size"></input></br>
     <button id='go'>Create Table</button>
-    <table id = "mytable">
-    </table>
     <script>
       function tableCreator(number){
-        for(let x = 0; x < number; x++) {
-          for(let x = 0; x < number; x++) {
-            console.log(x);
-            $('#mytable tr:last').append(`<tr id='tr'><td></td></tr>`);
+        let y = 1;
+        let a = number;
+        number++
+        for(let x = 1; x < number; x++) {
+          $('#mytable').append('<tr id =row' + y + '></tr>');
+
+          for(let x = 1; x < number; x++) {
+              $('#row' + y).append('<th id=box' + y + "-" + x + '></th>');
           }
+          y++
+        }
+        $('#box1-' + a).css('background-color', 'black')
+        $('#box1-1').css('background-color', 'black')
+        $('#box' + a + '-' + a).css('background-color', 'black')
+        $('#box' + a + '-' + 1).css('background-color', 'black')
+        for(let x = 1; x < number; x++) {
+          $('#box' + x + '-' + x).css('background-color', 'black')
+          $('#box' + (a - x) + '-' + (2 + x - 1)).css('background-color', 'black')
+          $('#box' + (2 + x - 1) + '-' + (a - x)).css('background-color', 'black')
         }
       }
       $('#go').click(() => {
-        console.log($('#input').val());
+        $('table').empty();
+        $('body').append('<table id = mytable></table>');
         let number = $('#input').val();
+        number = parseInt(number);
+        let a = number;
         tableCreator(number);
-
+        if(number % 2 == 0)
+        {
+          $('#box' + (a/2) + '-' + (a/2)).css('background-color', 'black');
+          $('#box' + (a/2) + '-' + (a/2 + 1)).css('background-color', 'black');
+          $('#box' + (a/2 + 1) + '-' + (a/2 + 1)).css('background-color', 'black');
+          $('#box' + (a/2 + 1) + '-' + (a/2)).css('background-color', 'black');
+        }
+        else{
+          $('#box' + (a/2 + 0.5) + '-' + (a/2 + 0.5)).css('background-color', 'black');
+        }
       })
 
     </script>
