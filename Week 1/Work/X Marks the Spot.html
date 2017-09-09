@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>X marks the spot</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+    </script>
+    <style>
+    table {
+      width: 300px;
+      height: 50px;
+    }
+    tr, td {
+      border: solid;
+      border-color: black;
+      width: 200px;
+      height: 50px;
+    }
+    #go {
+      height: 50px;
+      color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <input id='input' type="number" placeholder="Input table size"></input></br>
+    <button id='go'>Create Table</button>
+    <table id = "mytable">
+    </table>
+    <script>
+      function tableCreator(number){
+        for(let x = 0; x < number; x++) {
+          for(let x = 0; x < number; x++) {
+            console.log(x);
+            $('#mytable tr:last').append(`<tr id='tr'><td></td></tr>`);
+          }
+        }
+      }
+      $('#go').click(() => {
+        console.log($('#input').val());
+        let number = $('#input').val();
+        tableCreator(number);
+
+      })
+
+    </script>
+  </body>
+</html>
