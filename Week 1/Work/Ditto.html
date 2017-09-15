@@ -16,18 +16,19 @@
       return result;
     }
     function objectChecker(key1, key2, val1, val2) {
-      if (key1 == key2) {
+      if (key1.includes(key2) && cat1key.length == cat2key.length) {
         console.log("Keys are the same");
           if (val1 == val2) {
             console.log("Values are the same");
+            console.log("Objects are the same");
           } else {
-            console.log("Values are not the same");
+            console.log("Objects are not the same");
           }
       } else {
-        console.log("Keys are not the same");
+        console.log("Objects are not the same");
       }
     }
-    const cat1 = { name: "Ditto", job: "cat", race: "not human"};
+    const cat1 = { name: "Ditto",race: "human", job: "cat"};
     const cat2 = { name: "Ditto", job: "cat", race: "human"};
     let cat1key = Object.keys(cat1) + "";
     let cat2key = Object.keys(cat2) + "";
