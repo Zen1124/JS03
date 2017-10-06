@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+    </script>
+  </head>
+  <body>
+    <script>
+      $("body").append(`<input id = 'input' placeholder="Text|Color"></input> <button id = 'go'>Go!</button>`);
+      let places = [];
+      let color = [];
+      $("#go").click(() => {
+        $("#container").empty();
+        $("#container").remove();
+        $("body").append(`<div id = 'container'></div>`);
+        let input = $("#input").val();
+
+        for (let x = 0;x < input.length;x++) {
+          if (input.charAt(x) === "|") {
+            places.push(input.slice(0,x));
+            color.push(input.slice(x + 1, input.length));
+          }
+        }
+        $("#container").append(`<ul id = "list"></ul>`);
+        console.log(places.length);
+        for (let x = 0;x < places.length;x++) {
+          $("#list").append(`<li id = '${x}' class = '${color[x]}'>${places[x]}</li>`);
+          $("." + color[x]).css("color", color[x]);
+          $(`.${color[x]}`).click(() => {
+            alert(`${places[x]}/ ${color[x]}`);
+          })
+        }
+      })
+
+    </script>
+  </body>
+</html>
