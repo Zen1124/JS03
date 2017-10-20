@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pet Finder</title>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <p>How many pets do you want to see?</p><input id ="input" type="number"></input><button id='enter'>Enter</button>
+    <script>
+      $('#enter').click(() => {
+        let number = $('input').val();
+        for (let x = 0;x < number;x++) {
+          $.getJSON('http://api.petfinder.com/pet.getRandom?format=json&key=ee730f856a870140cf39526da9c1e236&output=basic&callback=?',(response) => {
+            console.log(response);
+            $('body').append(`<h1>${response.petfinder.pet.name.$t}</h1></br>`);
+            $('body').append(`<img width='400px' src=${response.petfinder.pet.media.photos.photo[Math.floor(Math.random() * (response.petfinder.pet.media.photos.photo.length - 1)) + 0  ].$t}>`)
+            $('body').append(`</br><a href = "types.html">Show more types of ${response.petfinder.pet.animal.$t}</a>`)
+          });
+
+        }
+
+      })
+
+    </script>
+  </body>
+</html>
